@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta name="_csrf" th:content="${_csrf.token}">
+    <meta name="_csrfHeader" th:content="${_csrf.headerName}">
+    <title th:if="${pageTitle}" th:text="${pageTitle}"></title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+    <link rel="stylesheet" type="text/css" th:each="file : ${addCss}" th:href="@{/css/{file}.css(file=${file})}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/join.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/login.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/common.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/insert.css}">
+
+    <th:block layout:fragment="addCss"></th:block>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script th:src="@{/js/common/js}"></script>
+    <script th:each="file : ${addScript}" th:src="@{/js/{file}.js(file=${file})}"></script>
+    <script type="text/javascript" th:src="@{/js/join.js}"></script>
+    <script type="text/javascript" th:src="@{/js/login.js}"></script>
+    <script
+            src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <th:block layout:fragment="addScript"></th:block>
+</head>
+<body>
+<header th:replace="~{outlines/header::common}"></header>
+<main layout:fragment="content"></main>
+<footer th:replace="~{outlines/footer::common}"></footer>
+<iframe name="ifrmProcess" class="dn" style='display:none;'></iframe>
+</body>
+</html>
